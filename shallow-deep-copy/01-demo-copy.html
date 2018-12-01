@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<!-- 
+
+    shallow copy & deep copy
+    
+    1. 概念
+        对于js中的数据类型， 如果是简单数据类型， 在变量的赋值传递都是值传递的，简单地来说是复制一份传递。
+        对于复杂数据类型， 其实是引用传递， 对于堆内存中存储对象的空间没有变化。
+
+        浅拷贝 只是复制对象的指针，而不是赋值对象本身，新旧对象还是共享同一块内存；
+        深拷贝 会另外创造一个同样的对象，新旧对象不会共享一块内存，修改对象不会相互影响
+
+    
+    2. 浅拷贝的方法
+        1. 直接遍历对象的属性，for....in
+        2. es6的新方法，Object.assign(target, ...sources)，浅拷贝
+
+
+    3. 深拷贝的方法
+        1. 对象只有一层的话，Object.assign(), 或者手动复制一份都可以实现
+        2. 对于可以转json字符串的额对象， 可以先用JSON.stringify, 之后JSON.parse() 可以得到新的对象
+        3. 递归拷贝，判断对象的属性是否对象， 是对象继续拷贝，如果有循环引用就退出
+        4. Object.create() 方法
+        5. jQuery提供的方法， jQuery.extend( [deep ], target, object1 [, objectN ] ) //deep: true
+        
+
+ -->
+<body>
+    
+</body>
+</html>

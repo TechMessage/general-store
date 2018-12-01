@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<!-- 
+
+    1. debounce throttle  防抖和节流
+    在进行监听resize scroll ,keyup 事件的时候,如果事件处理器handler一直执行如果涉及到ajax请求
+    就有可能导致页面卡顿,影响页面的效果
+
+    防抖和节流都是控制函数在一定时间内 触发的次数, 不能够随意执行
+
+    区别:
+        debounce 防抖,比如持续触发keyup事件, 当一段时间内不再触发keyup时才会执行handler, 比如用户的
+        输入校验时,如果每次输入一个字母就触发一次,那么将加重浏览器的负担,导致页面卡顿,用户体验差
+
+        基本的解决思路就是利用setTimeout定时器, 设置一段时间内才会触发hander,在等待的这段时间内
+        触发事件,handler将不会执行。 ===> 就是利用定时器的方法setTimeout() clearTimeout()
+
+        在这段时间内如果继续触发事件，就是清除定时器，重新设置定时器，举例说明在用户在搜索框中
+        持续输入的时候，那么hander将会一致被延后执行，直到用户停止输入1s后才会触发一次handler
+        可以形象理解为直到用户在两次输入间隔小于设定1s内，handler将不会执行
+
+        假如用户一直输入，那么hander将不会执行，直到用户停止输入1s后触发
+
+        这一点和throttle有所不同，throttle是限定了1s内只会并且一定会触发1次
+        debounce如果用户一直输入，将不会触发1次
+
+ -->
+
+<body>
+
+    <h3>持续输入内容，不会一直触发</h3>
+    <label>输入内容搜索自动联想：
+        <input type="text" name="keywords">
+    </label>
+    <hr>
+    <p class="match"></p>
+
+</body>
+<script>
+
+    // 函数防抖, 用到了闭包, 保护变量timerId
+    // func 是待触发的handler , wait表示等待时间
+    function debounce(func, wait) {
+        var timerId = null;
+        return function () {
+            if (timerId !== null) clearTimeout(timerId);
+            timerId = setTimeout(func, wait);
+        }
+    }
+
+
+    // 
+    var p = document.querySelector('.match');
+    var input = document.querySelector('input');
+    var handler = function () {
+        p.innerText = input.value;
+        console.log(input.value);
+    }
+
+    input.addEventListener('keyup', debounce(handler, 1000));
+
+
+</script>
+
+</html>

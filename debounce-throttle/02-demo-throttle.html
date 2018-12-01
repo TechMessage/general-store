@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            height: 2000px;
+        }
+    </style>
+</head>
+<!-- 
+
+    throttle 节流函数
+
+    1. 函数节流保证在一定时间内只会一定会执行1次, 比如在页面滚动的时候，每隔1s的时候
+        执行1次
+
+    基本实现： 函数执行的时候通过判断函数内的事件差，当时间差>设定的值时才会触发handler执行
+
+
+ -->
+
+<body>
+
+
+    <script>
+
+        function throttle(func, delay) {
+            var t1 = Date.now(); //起始时刻
+            var temp = function (e) {
+                // e将相当于事件对象
+                var that = this;
+                var args = arguments;
+                var t2 = Date.now(); //执行handler时刻
+                if (t2 - t1 >= delay) {
+                    func.apply(that, args); //执行handler,绑定this, args
+                    t1 = Date.now(); // 更新t1的时刻, 保证下次执行函数
+                }
+            }
+            return temp;
+        }
+
+        var handler = function (e) {
+            console.log(Date.now());
+            console.log(e);
+        }
+        
+        var throttleHandler = throttle(handler, 1000);
+        console.log(throttleHandler);
+
+        // 监听滚动事件
+        window.addEventListener('scroll', throttle(handler, 1000));
+
+    </script>
+
+</body>
+
+</html>

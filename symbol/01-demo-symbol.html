@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<!-- 
+
+    es5 的对象名 都是字符串， 容易造成属性名的冲突， 如果给一个已存在的对象
+    添加新的属性， 如何保证属性名不会造成冲突呢？ 
+    为此 es6 引入了新的数据类型Symbol类型
+
+    Symbol 是一种原始数据类型， 简单类型， 表示唯一的值， 类似于uuid
+
+    它是通过Symbol() 函数生成的
+    typeof  // 'symbol'
+    
+    常用场景：
+    1. 作为对象的属性名使用， 只能使用方括号[] 语法
+    2. 消除魔术字符串，比如switch..case 中的case条件，如果是字符串常量， 可以使用symbol类型
+        避免冲突
+    3. 作为对象的属性名存在时，如何遍历， Object.getOwnPropertySymbols 返回一个数组
+
+
+
+ -->
+
+<body>
+
+
+
+
+
+</body>
+
+</html>
+
+<script>
+
+    // symbol 是简单数据类型，只能通过Symbol() 函数生成,
+    // 函数接受参数可以作为 symbol值的描述，是一种类似字符串的数据类型
+    // Symbol函数可以接受一个字符串作为参数，表示对 Symbol 实例的描述，
+    // 主要是为了在控制台显示，或者转为字符串时，比较容易区分。
+
+    let s = Symbol('name')
+
+    let mySymbol = Symbol();
+
+    // 第一种写法
+    let a = {};
+    a[mySymbol] = 'Hello!';
+
+    // 第二种写法
+    let a = {
+        [mySymbol]: 'Hello!'
+    };
+
+
+</script>

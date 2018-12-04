@@ -1,0 +1,37 @@
+<script>
+
+    // 数组的迭代方法以及区别
+    // forEach map filter some every  reduce
+
+    // 1. forEach  是遍历数组中每个元素,对其进行处理,
+    // 2. map 是便来
+
+    var array = [1, 2, 3, 4, 5];
+
+    // 1.foreach
+    array.forEach(val => console.log(val)) // 打印每个数组
+
+    // 2.map
+    var array2 = array.map(val => val + 1); //遍历每个元素处理后返回新的数组
+    console.log(array2); // [2,3,4,5,6]
+
+    // 3. filter
+    var array3 = array.filter(val => val % 2 === 0);      // 过滤元素,返回新的数组, 取偶数
+    console.log(array3); // [2, 4]
+
+    // 4. some 
+    var b1 = array.some(val => val > 4);    // 遍历所有的元素, 有一个满足条件,则返回true
+    console.log(b1);
+
+    // 5. every
+    var b2 = array.every(val => val > 1);  // 遍历所有的元素, 所有的元素带入函数计算都为true, 则返回true;否则返回false
+    console.log(b2);
+
+    // 6. reduce
+    //  reduce 每次迭代元素将结果返回继续传递给prev, 类似于递归计算 , 返回最终的结果
+    var result = array.reduce((prev, val) => prev * val); // 
+    console.log(result);
+
+    
+
+</script>

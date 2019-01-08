@@ -98,12 +98,45 @@
 
 
     // 回调函数
-    console.log('abcabcabc'.replace(/a/gim, function (match, p1, p2, offset, string) {
-        console.log(match)
-    }))
+    // console.log('abcabcabc'.replace(/a/gim, function (match, p1, p2, offset, string) {
+    //     // console.log(match)
+    // }))
+
+</script>
+
+<pre>
+    1.
+    exec() 
+    该方法是正则表达式对象的方法，根据正则匹配来搜索字符串中匹配的子串， 返回数组或者null
+    如果仅仅验证字符串是否符合正则匹配，建议使用test()方法，该方法返回boolean值
+
+    2. 
+    如果使用的正则表达式是全局模式，那么就会对待比较的字符串进行连续性匹配
 
 
+</pre>
 
+<script>
+    var re = /quick\s(brown).+?(jumps)/ig;
+    var result = re.exec('The Quick Brown Fox Jumps Over The Lazy Dog');
+    // console.log(result);
 
+    // 根据日期格式 1998-11-11 10:22:22 截取年月日时分秒
+    let timerpattern = /(\d{4})-(\d{2})-(\d{2})\s(\d{2}):(\d{2}):(\d{2})/gim;
 
+    // 截取时间格式中的年月日时分秒, 重新组合展示日期时间
+    function getTimer(str) {
+        return timerpattern.exec(str);
+    }
+    // console.log(getTimer('1998-11-11 10:22:22').slice(1,7));
+
+    // 连续性匹配
+    let successivepattern = /a/g;
+
+    // console.log(successivepattern.exec('abcabc'));
+    let array = [];
+    while (null != (array = successivepattern.exec('abcabc'))) {
+        console.log(array[0])
+    }
+    
 </script>

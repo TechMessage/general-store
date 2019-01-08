@@ -111,7 +111,8 @@
     如果仅仅验证字符串是否符合正则匹配，建议使用test()方法，该方法返回boolean值
 
     2. 
-    如果使用的正则表达式是全局模式，那么就会对待比较的字符串进行连续性匹配
+    如果使用的正则表达式是全局模式，那么就会对待比较的字符串进行连续性匹配，会在第1次匹配的子串
+    后面的字符串进行再次匹配
 
 
 </pre>
@@ -136,7 +137,36 @@
     // console.log(successivepattern.exec('abcabc'));
     let array = [];
     while (null != (array = successivepattern.exec('abcabc'))) {
-        console.log(array[0])
+        // console.log(array[0])
     }
-    
+
+</script>
+
+<pre>
+    match()
+
+    1.
+    该方法是字符串的方法，参数是正则表达式，返回值是匹配的子串组成的数组或者null
+
+    2.
+    用法与exec有点类似，不同的是如果正则是全局模式，那么不会返回正则中括号匹配的子串，
+    仅仅返回所有匹配到的整个字符串
+    如果正则不是全局匹配，那么只会返回第一个匹配的子串，这种情况下是可以返回正则中
+    括号语法匹配子组
+
+</pre>
+<script>
+    {
+        let pattern = /ab(c)/g;
+        // console.log('abcabc'.match(pattern)) // ["abc", "abc"] 
+        // console.log('abcabc'.match(/ab(c)/)) // ["abc", "c", index: 0, input: "abcabc", groups: undefined]
+
+    }
+
+    {
+        let myString = 'Hello 1 word. Sentence number 2.';
+        let splits = myString.split(/(\d)/);
+
+        console.log(splits);
+    }
 </script>

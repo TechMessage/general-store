@@ -22,6 +22,15 @@
         \w 字母数字下划线
         \W 非字母数字下划线
 
+
+    5. 标记量 flag
+        正则表达式 有一些标记量来处理全局匹配 和 字母大小写和多行匹配，标记量可以多个使用，无顺序
+        g 全局匹配
+        i 忽略大小写
+        m 多行匹配 会忽略换行符，相当于把多行当做一行   
+
+
+
 </pre>
 
 <script>
@@ -33,6 +42,68 @@
     // console.log(p)
 
     // console.log(p.test('ab c efsf')) 
-    
+
 </script>
 
+<pre>
+    1. 
+    replace() 方法是字符串的方法，返回一个新的字符串，把原来的字符串中符合匹配规则的
+    子串替换为新的字符串。
+    匹配规则可以是字符串 或者 正则表达式， 替换的可以是字符串也可以是回调函数，
+    如果匹配规则是正则表达式，仅仅把第一次匹配的子串替换掉，当然可以将正则写成/xx/g全局匹配模式
+
+    2. 
+    replace(pattern, replacement)
+    replacement 是字符串的时候可以包含特殊的字符匹配模式 $
+    $$ 表示将匹配的地方替换为$字符
+    $& 表示匹配的子字符串
+    $` 匹配的子串前面的所有字符
+    $' .........后...
+    $n 特殊情况，当pattern 是正则匹配的时候，并且正则中使用了（）,那么$1表示第一个（）中匹配的子串，以此类推
+        $2  $3 ....
+
+    3.
+    replace方法不会改变原有的字符串，会生成新的字符串
+    replacement 可以是回调函数，每当出现一次匹配，就会执行一次回调，返回的字符串作为替换匹配的子串，
+    接受的参数有match, p1, p2, ... , offset, string
+    match 就是匹配的字符串
+    p1, p2, ...., 就是类似$1, $2 匹配的子串, pattern必须使用括号匹配
+    offset 匹配的子串第一个字符的在原字符串中下标索引，从0开始计算
+    string 整个字符串
+
+
+
+</pre>
+<script>
+    var pattern = /(\w+)\s(\w+)/;
+
+    var str = 'hello world';
+
+    let newstr = str.replace(pattern, '$2 $1')
+
+    // console.log(newstr); // world hello
+
+    // 全局匹配 替换字符串aa为bb
+    let teststr = '这是曾ad法法大adfaaa 我的锅a\na这是咋么回事aa xxx大大发';
+    // console.log(teststr.replace(/aa/gim, 'bb'));
+
+    let str2 = 'abcabc';
+
+    // console.log(str2.replace(/b/gim, '$$')) //a$cdefg
+    // console.log(str2.replace(/b/gim, '$&')) // ==>$& 表示匹配到的子串  ab-bcb-bdeb-bfb-bg
+    // console.log('abcb'.replace(/b/gim, '$`'))  // aacabc
+    // console.log('abcabc'.replace(/b/gim, "$'"))   // acabccacc
+    // $1 表示第一个括号匹配的子串，$2 表示第二个括号....
+    // console.log('1988-10-12'.replace(/(\d{4})-(\d{2})-(\d{2})/gim, '$3-$2-$1')) //12-10-1988
+
+
+    // 回调函数
+    console.log('abcabcabc'.replace(/a/gim, function (match, p1, p2, offset, string) {
+        console.log(match)
+    }))
+
+
+
+
+
+</script>

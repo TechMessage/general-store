@@ -1,1 +1,1 @@
-# general-store
+# 记录基础知识点

@@ -1,0 +1,39 @@
+<script>
+
+    const promise = new Promise((resolve, reject) => {
+
+        console.log('第1个异步执行完毕')
+        resolve('1') //这就想让与返回了结果
+    })
+
+    promise
+        .then((data) => {
+            console.log(data)
+            throw '请求后台接口失败了' //程序到此截止，相当于返回
+        })
+        .catch((e) => {
+            console.log(e)
+            return '2'
+        })
+        .then((data) => {
+            console.log(data)
+            console.log('失败之后再次执行')
+        })
+
+    // setTimeout改造 让他支持promise的异步编程
+    // 这么操作就是把setTime函数包装到一个promise对象 wait上
+    // const wait = ms => new Promise( resolve => setTimeout(resolve, ms)); 
+
+    // wait(1000)
+    //     .then( () => console.log('1秒后打印'))
+    //     .then( () => console.log('打印完成了'))
+
+    const wait = function (ms) {
+        return new Promise(function (resolve, reject) {
+            return setTimeout(resolve, ms);
+        })
+    }
+
+
+
+</script>

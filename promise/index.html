@@ -12,7 +12,61 @@
 </html>
 <script>
 
-    
+    // 1 一个异步函数 支持参数，一个成功的callback ,一个 失败的callback
 
+    // 传入式的 回调函数
+
+    function createFileAsync(config, successCallback, failureCallback) {
+        // 这个异步的函数在执行完后，会根据结果来执行不同的回调函数
+        // 这是最普通的异步函数回调模型写法，
+        // 加入回到掉函数里还有回调，就会形成一种毁掉地狱的写法
+
+    }
+
+    createFileAsync(config, successCallback, failureCallback)
+
+    // 2 如果把上面的函数改写成一个返回promise对象的函数，那么可以解决毁掉地狱的写法了
+
+    createFileAsync(config).then(successCallback, failureCallback)
+
+    // 等价于
+    const promise = createFileAsync(config)
+    promise.then(successCallback, failureCallback)
+
+
+    // 3 经过上面的改造，这种方式有不少的好处
+
+    // 3.1 回调函数可以被保证在当前的事件循环未结束前不会执行
+    // 3.2 then()方法可以多次调用，链式编程，回调函数会依次执行
+    // 3.3 链式编程是最大的好处
+
+    // 4 then方法形成的链式promise链子中一定要返回结果，否在的话，下一个then方法中的
+    // 回调函数拿不到上一个回调函数返回的结果
+
+    // 5 catch() 方法可以用来执行异常的操作，而且在catch后还可以继续执行then方法
+
+    
+    // 6 catch() 方法是可以用来进行回调异常处理，或者变成的异常处理，而且对于多个链式的
+    // then方法，仅提供一个catch就可以了，如果其中任意一个then方法中的回调发生了异常
+    // 那么就会直接跳到catch来执行
+
+    // 非常类似 try ... catch...语法结构
+
+
+    // async /await 就是promise的语法糖，将异步的写法变成同步
+
+
+    /*
+
+        1. 老旧的异步api如何通过promise来进行改造呢？
+        
+            例如setTimeout()这个api，它还是需要通过传入的毁掉函数来使用，而且如果传入的
+            毁掉函数报错了也不会有任何catch操作来捕捉到异常
+
+            通常的做法就是用一个promise对象来包裹这些api，不是直接调用它
+
+    */
+
+    
 
 </script>

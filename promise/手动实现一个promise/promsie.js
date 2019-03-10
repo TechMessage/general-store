@@ -41,7 +41,7 @@ class Mypromise {
         this._status = PENDING;
         this._value = undefined;
         // 添加 队列，存onFulfilled, onRejected
-        this._fulfilledQueues = []
+        this._fulfilledQueues = [] 
         this._rejectedQueues = []
 
         // 执行handle

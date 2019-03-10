@@ -1,24 +1,24 @@
 <script>
 
-    const promise = new Promise((resolve, reject) => {
+    // const promise = new Promise((resolve, reject) => {
 
-        console.log('第1个异步执行完毕')
-        resolve('1') //这就想让与返回了结果
-    })
+    //     console.log('第1个异步执行完毕')
+    //     resolve('1') //这就想让与返回了结果
+    // })
 
-    promise
-        .then((data) => {
-            console.log(data)
-            throw '请求后台接口失败了' //程序到此截止，相当于返回
-        })
-        .catch((e) => {
-            console.log(e)
-            return '2'
-        })
-        .then((data) => {
-            console.log(data)
-            console.log('失败之后再次执行')
-        })
+    // promise
+    //     .then((data) => {
+    //         console.log(data)
+    //         throw '请求后台接口失败了' //程序到此截止，相当于返回
+    //     })
+    //     .catch((e) => {
+    //         console.log(e)
+    //         return '2'
+    //     })
+    //     .then((data) => {
+    //         console.log(data)
+    //         console.log('失败之后再次执行')
+    //     })
 
     // setTimeout改造 让他支持promise的异步编程
     // 这么操作就是把setTime函数包装到一个promise对象 wait上
@@ -28,12 +28,56 @@
     //     .then( () => console.log('1秒后打印'))
     //     .then( () => console.log('打印完成了'))
 
-    const wait = function (ms) {
-        return new Promise(function (resolve, reject) {
-            return setTimeout(resolve, ms);
-        })
-    }
+    // const wait = function (ms) {
+    //     return new Promise(function (resolve, reject) {
+    //         // console.log()
+    //         setTimeout(resolve, ms);
+    //     })
+    // }
 
+    // let p2 = wait(2000);
+
+    // // 相当于
+    // let p3 = new Promise((resolve, reject) => {
+    //     return setTimeout(resolve, 3000);
+    // })
+
+    // console.log(p3);
+    // console.log(p2);
+
+    // p2
+    //     .then(() => {
+    //         throw 'error'
+    //     })
+    //     .catch((e) => {
+    //         console.log(e)
+    //     })
+
+
+    let p1 = new Promise((resolve, reject) => {
+        setTimeout(reject, 2000); //
+        // return '1' 
+    })
+
+    /*
+        new Promise( function(resolve, reject) {
+            
+        } )的时候
+        1. 会立即执行传入的函数 function(resolve, reject){....} 这个函数作为executor会
+            立刻执行，并且接受两个参数resolve, reject 在函数体内部，这两个参数其实
+            
+            resolve, reject 这两个参数其实就是未来的回调函数（未来要执行的）
+            resolve 表示then(onFulfilled)  // 
+            reject 表示catch(onRejected)  
+    */
+
+    console.log(p1);
+
+    p1.catch(() => {
+        
+    })
+
+    console.log()
 
 
 </script>

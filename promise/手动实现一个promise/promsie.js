@@ -49,7 +49,7 @@ class Mypromise {
             // 给回调函数传入参数，resolve, reject 两个函数
             handle(this._resolve.bind(this), this._reject.bind(this))
         } catch (error) {
-
+            this._reject(error)
         }
     }
 
@@ -94,7 +94,7 @@ class Mypromise {
             }
         }
 
-        run()
+        setTimeout(run, 0) //异步执行
     }
 
     _reject(err) {
@@ -108,6 +108,8 @@ class Mypromise {
                 cb(err)
             }
         }
+
+        setTimeout(run, 0)  //异步执行
     }
 
 

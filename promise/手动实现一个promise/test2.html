@@ -1,0 +1,82 @@
+<script src="./promsie.js"></script>
+<script>
+
+    ; (function () {
+
+        const p1 = new Promise((resolve, reject) => {
+            // setTimeout(() => {
+            //     resolve(222) //1s 这里的p1的状态 改变为成功 并且值为111
+            // }, 1000);
+            resolve(222)
+        })
+        console.log(p1)
+
+        p1.then(val => {
+            console.log(val)
+        })
+
+        console.log(111)
+
+        /*
+            输入结果： Promise {<resolved>: 222}
+                     111
+                     222
+            
+            执行流程:  先是new 一个 promise对象并且直接让他 状态变为成功 输出
+                      从输出的结果来看，p1.then方法的执行时异步的，即使此时p1
+                      已经是成功状态，按理来说应该以及执行回到函数，但是它是异步
+                      执行的，所以就先执行了下面的打印111
+
+                
+
+        */
+
+    })();
+
+</script>
+
+<script>
+
+    /*
+        使用场景，一个业务需求： 1 ajax请求后台数据，成功后返回结果
+                             2  拿到1的结果 作为参数 再次ajax请求，得到最终的结果
+    */
+
+    const p1 = new Mypromise((resovle, reject) => {
+
+        $.ajax({
+            url: 'xxx',
+            data: {
+                name,
+                age
+            },
+            success: function (data) {
+                if (data.success) {
+                    resolve(data)
+                } else {
+                    reject(data.message || '系统繁忙')
+                }
+            },
+        })
+    })
+
+    p1.then(data => {
+
+        $.ajax({
+            url: 'xxxx',
+            data,
+            success:function (data) {
+                if(data.success) {
+
+                }else {
+                    alert(data.message || '系统繁忙')
+                }
+            }
+        })
+
+    }, err => {
+        // 第1步骤的请求出错了
+        console.log(err)    
+    })
+
+</script>

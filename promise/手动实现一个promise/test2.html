@@ -1,4 +1,4 @@
-<script src="./promsie.js"></script>
+<script src="./promise.js"></script>
 <script>
 
     ; (function () {
@@ -97,7 +97,10 @@
         因为一个promise对象可以多次调用then方法来注册 状态变化回调函数
 
         而且这个then方法 执行的时候是异步执行的，不会阻碍主进程的执行
+        
+        then()的执行是异步的
 
+        
 
 
 
@@ -108,7 +111,9 @@
         _value    ===> 标记.....的值
 
         _fullfilledQueue: []   这个数据是为了 存储 promise状态 转为成功时调用的 回调函数
-    
+        _rejectedQueue: []     存储 状态为 失败时的回调函数
+
+        
     */
 
 

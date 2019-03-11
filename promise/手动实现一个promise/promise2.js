@@ -16,7 +16,7 @@ const [PENDING, Fulfilled, Rejected] = ['PENDING', 'Fulfilled', 'Rejected'];
 let isFunc = v => typeof v === 'function';
 
 // 用es6 class的写法
-
+ 
 class Mypromise {
 
     constructor(executor) {

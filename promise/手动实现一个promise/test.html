@@ -1,20 +1,37 @@
-
 <script src="./promise.js"></script>
 
 <script>
 
-    ; (function () {
-        const p1 = new Mypromise(resolve => {
-            setTimeout(() => {
-                resolve('111')
-                console.log(2, p1) //这里 p1状态 fulfilled
-            }, 1000);
-        })
+    // ; (function () {
+    //     const p1 = new Mypromise(resolve => {
+    //         setTimeout(() => {
+    //             resolve('111')
+    //             console.log(2, p1) //这里 p1状态 fulfilled
+    //         }, 1000);
+    //     })
 
-        console.log(1, p1)  // 这里先打印 此时p1的状态还是pending
+    //     console.log(1, p1)  // 这里先打印 此时p1的状态还是pending
 
-    })();
+    // })();
 
 
+
+</script>
+
+<script>
+
+    // let p1 = new Mypromise(resolve => {
+    //     resolve()
+    // })
+
+    // console.log(p1);
+
+    // let p2 = p1.then(222);
+   
+    // console.log(p2)
+
+    // p2.then(v => {
+    //     console.log(v);
+    // })
 
 </script>

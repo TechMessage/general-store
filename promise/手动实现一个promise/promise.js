@@ -146,7 +146,7 @@ class Mypromise {
                 try {
                     if (!isFunction(onFulfilled)) {
                         // 调用then时传入的不是一个函数时
-                        onFulfilledNext(value)
+                        onFulfilledNext(value) //直接把新生成的promise的状态改为fulfilled 值为value
                     } else {
                         let res = onFulfilled(value) //执行onFulfilled 这个
                         if (res instanceof Mypromise) {

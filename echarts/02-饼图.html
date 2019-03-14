@@ -28,8 +28,8 @@
 
 <script>
 
-    // 1.
-    var mychart = echarts.init(document.querySelector('.box'))
+    // 1.内置的颜色主题
+    var mychart = echarts.init(document.querySelector('.box'),'dark')
 
 
     // 2.
@@ -52,6 +52,12 @@
     }
 
     // 3.
-    mychart.setOption(option);
-
+    // 数据较多的时候可以使用loading动画来提高用户体验
+    mychart.showLoading()
+    setTimeout(()=>{
+        mychart.hideLoading()
+        mychart.setOption(option);
+        
+    },1000)
+    
 </script>

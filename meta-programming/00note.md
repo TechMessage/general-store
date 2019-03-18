@@ -15,3 +15,5 @@
 3. target  目标对象 被代理的对象
 4. invariants  不变性
 
+
+

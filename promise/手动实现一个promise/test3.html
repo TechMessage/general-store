@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script src="./mypromise.js"></script>
+<script>
+
+    // 验证的问题
+    // let p1 = new Mypromise('xxxx') //报错 ，参数不是一个函数
+
+    let p1 = new Mypromise((resolve, reject) => {
+        setTimeout(reject, 1000) //1s后 p1的状态变为失败
+    })
+
+    console.log(p1)
+
+    p1.then(undefined, () => {
+        console.log(111);
+    }).then(() => {
+        console.log(222)
+    })
+
+
+</script>

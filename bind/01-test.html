@@ -1,0 +1,78 @@
+<pre>
+
+    1. bind方法根据一个函数a 生成一个新的函数b, 当b执行的的时候，把a中的this变量固定住，并且可以
+    给a传入预先传入一系列的参数，相当是事先传入了参数 
+
+    2. bind方法可以将一个函数中的this固定住，相当于改变了this的指向。js中函数的定义中this变量的
+    指向是根据函数的执行环境来决定的。而bind方法刚好就可以固定住this
+
+    3. bind() 函数创建了一个新的绑定函数 bf, 一个bf就是一个外来的函数对象，它是包裹原来的函数对象，调用bf其实就是
+    调用它包裹的那个函数对象，外层的函数可以固定内层函数的this,以及给他预先传入参数
+
+    4 当使用new 来调用 绑定函数的时候，this的绑定就失效了
+
+
+    <!-- 常用的用法 -->
+    1. 对某些函数中this的固定，可以根据已知函数来创建bind函数，特别是对象中定义的方法
+
+    2. 对于一些函数的调用，可以预先传入一些参数固定的值，这种情况下你可能不想绑定this,那么第一个参数可以传入null
+
+    3. 大概就是两类用法，1是绑定this,  2 预先传入参数
+
+
+    4. setTimeout setInterval 中传入的回调函数中的this默认是指向window的，可以使用bind来改变指向
+
+
+
+
+</pre>
+
+<script>
+
+// var obj = {
+//     x: 123,
+//     getX:function () {
+//         console.log(this.x)
+//         return this.x
+//     }
+// }
+
+// //1 不适用bind
+
+// // var func01 = obj.getX;
+// // console.log(func01()) //this指向全局  undefined
+
+
+// // 2 使用bind
+// var func02 = obj.getX.bind(obj)
+// // console.log(func02()) // 123
+
+
+// new func02() // undefined
+
+// 每次打印输出的时候带上时间
+ var log = console.log.bind(null, '测试')
+
+ log('132134')
+
+setTimeout(function () {
+    log('32q3')
+},3000)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+

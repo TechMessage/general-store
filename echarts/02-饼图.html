@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+    </div>
+</body>
+
+</html>
+
+<script src="./echarts.js"></script>
+
+<script>
+
+    // 1.内置的颜色主题
+    var mychart = echarts.init(document.querySelector('.box'),'dark')
+
+
+    // 2.
+    var option = {
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie',
+                roseType:'angle',
+                radius: '55%',
+                data: [
+                    { value: 235, name: '视频广告' },
+                    { value: 274, name: '联盟广告' },
+                    { value: 310, name: '邮件营销' },
+                    { value: 335, name: '直接访问' },
+                    { value: 400, name: '搜索引擎' }
+                ]
+            }
+        ]
+    }
+
+    // 3.
+    // 数据较多的时候可以使用loading动画来提高用户体验
+    mychart.showLoading()
+    setTimeout(()=>{
+        mychart.hideLoading()
+        mychart.setOption(option);
+        
+    },1000)
+    
+</script>

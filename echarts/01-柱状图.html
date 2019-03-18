@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<!-- 
+    1. 贮备一个dom容器 ，固定 宽 高
+ -->
+
+<body>
+
+    <div class="box">
+
+    </div>
+
+</body>
+
+</html>
+<script src="./echarts.js"></script>
+<script>
+
+    //1. 初始化echarts
+
+    var myChart = echarts.init(document.querySelector('.box'))
+
+    // 2. 配置项option
+    var option = {
+        title: {
+            text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+        legend: {
+            data: ['销量']
+        },
+        xAxis: {
+            data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+        }]
+    }
+
+    // 3. 设置配置项，生成图表
+    myChart.setOption(option)
+
+</script>
+

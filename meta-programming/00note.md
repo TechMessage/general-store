@@ -8,4 +8,10 @@
 
 > proxy 对象允许对 对象的属性进行拦截操作，触发一些自定义的方法
 
+> terminology 术语
+
+1. handler  一个参数对象，包含一些traps的定义
+2. traps  一些方法的定义，用来获取对象的属性
+3. target  目标对象 被代理的对象
+4. invariants  不变性
 

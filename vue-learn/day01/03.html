@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <label>
+            ask a yes/no question: <input type="text" v-model='question'>
+        </label>
+
+        <p>{{answer}}</p>
+
+        <img :src="imageurl" alt="">
+    </div>
+
+
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+
+<script src="../vue.js"></script>
+
+<script>
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            question: '',
+            answer: 'please ask a question first',
+            imageurl:''
+        },
+
+        methods: {
+            getAnswer: function () {
+                this.answer = 'lookuping ....'
+                // var vm = this
+                axios
+                    .get('https://yesno.wtf/api')
+                    .then(resp => {
+                        console.log(resp.data)
+                        this.answer = _.capitalize(resp.data.answer)
+                        this.imageurl = resp.data.image;
+                    })
+                    .catch(err => {
+                        this.answer = 'can not reach the api' + error;
+                    })
+            }
+        },
+
+        watch: {
+            question: function (newval, oldval) {
+                this.answer = 'waiting for you to stop typing'
+                this.debounceGetanswer()
+            }
+        },
+
+        created: function() {
+            this.debounceGetanswer = _.debounce(this.getAnswer, 500)
+        }
+
+    })
+
+
+</script>

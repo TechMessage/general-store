@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        渲染区域 app 数据存储 data
+     -->
+    <div id="app">
+
+        {{msg}}
+
+        <span v-bind:title='tip'> 显示 </span>
+
+        <!-- 条件渲染 -->
+        <div class="box" v-if='isShow'>显示or隐藏</div>
+        <!-- 循环列表 -->
+        <ul>
+            <li v-for="item in list">
+                {{item.id}} === {{item.name}}
+            </li>
+        </ul>
+
+        <!-- 表单的双向绑定 mvvm -->
+
+        <label>
+            用户名 <input type="text" v-model='username'> <span>{{username}}</span>
+        </label>
+
+        <!-- 组件化 -->
+        <ul>
+            <todo-item 
+            v-for='item in list'
+            v-bind:todo='item'
+            v-bind:key='item.id'
+             > </todo-item>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script src="../vue.js"></script>
+<script>
+
+    // 组件的注册   
+    Vue.component('todo-item', {
+        props:['todo'],
+        template: '<li>{{todo.name}}</li>'
+    })
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: 'hello vuejs',
+            tip: `${new Date().toLocaleString()}`,
+            isShow: true,
+            list: [
+                { id: 1, name: 'zhangs' },
+                { id: 2, name: 'zhangs2' },
+                { id: 3, name: 'zhangs3' },
+            ],
+            username: ''
+        }
+
+    })
+
+
+
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        {{name}} === {{age}}
+
+        <button v-bind:disabled="isdisable"> 确认 </button><br>
+        <br>
+        <span>
+            {{changename}}
+        </span>
+    </div>
+    
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+
+    var data = {
+        name:'zhangs',
+        age:12,
+        isdisable:''
+    }
+
+    const app = new Vue({
+        el:'#app',
+        data:data,
+        computed: {
+            changename: function () {
+                return this.name.split('').reverse().join('')
+            }
+        }
+    })
+
+
+    //监视变量
+    app.$watch('name', (newval, oldval) => {
+        console.log(oldval, newval)
+    })
+
+</script>

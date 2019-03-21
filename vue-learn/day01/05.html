@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .red {
+            color: #e92323;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+        <template v-if='isshow'>
+            <h1> hello, world </h1>
+            <h3> Jack,world </h3>
+        </template>
+        <template v-else > 
+            <h1 :class="[red]">hello, world else</h1>
+            <h3> jack world </h3>
+        </template>
+
+    </div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el:'#app',
+        data:{
+            isshow:true
+        }
+    })
+
+
+</script>

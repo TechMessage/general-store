@@ -11,10 +11,16 @@
     <div id="app">
 
         <ul>
-            <li v-for="item in obj">
-                {{item}}
+            <li v-for="(value, key, index) in obj">
+                {{value}} == {{key}} == {{index}}
             </li>
         </ul>
+
+        <ol>
+            <li v-for="item in list">
+                {{item}}
+            </li>
+        </ol>
 
     </div>
     
@@ -30,11 +36,17 @@
                 name:'zhangs',
                 age:11,
                 job:'it'
-            }
+            },
+            list:[
+                'zhangs',
+                'lisi',
+                'wangwu'
+            ]
         }
     })
 
 
     // ##app
+    
 
 </script>

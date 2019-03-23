@@ -124,6 +124,10 @@
    1. 通过Vue.set(item, index, newval) ===> vue.$set(item, index, newval) 等价的
    2. 通过使用数组的改变方法  splice(index, 1, newval) 该方法可删可替换元素
 
+4. 对象类型的数据侦测
+   1. 直接作为data 属性的根级别的动态的添加属性是不会被vue检测到的，也不能具有响应式
+   2. 次级的作为data属性值如果是对象类型，那么该对象添加属性是可以是可以具有响应式的
+   
 
 
 

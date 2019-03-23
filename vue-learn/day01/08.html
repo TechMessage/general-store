@@ -1,31 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
 
     <div id="app">
         <span>{{a}}</span> <br> <br>
         <span>{{b.d}}</span>
+        <br><br>
+
+        <ul>
+            <li v-for="item in list">
+                {{item}}
+            </li>
+        </ul>
     </div>
+
     
 </body>
+
 </html>
 <script src="../vue.js"></script>
 <script>
 
     const app = new Vue({
-        el:'#app',
-        data:{
-            a:1,
-            b:{
-                c:1
+        el: '#app',
+        data: {
+            a: 1,
+            b: {
+                c: 1
+            },
+            origin:[1,2,3,4,5]
+        },
+        created: function () {
+            this.b = Object.assign({}, this.b, {
+                d: 12
+            })
+        },
+        computed:{
+            list: function () {
+                return this.origin.filter(function (v) {
+                    return v % 2 == 0;
+                })
             }
         }
     })
+
+
 
 </script>

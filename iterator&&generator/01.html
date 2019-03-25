@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+
+
+    //声明generator函数
+    function* getNum() {
+        for (var i = 0; i < 3; i++) {
+            yield i; // 会暂停函数的执行
+            console.log(i) 
+        };
+    }
+
+
+    // 首次执行generator函数返回迭代器
+    let iterator = getNum()
+
+    console.log(iterator)
+
+
+    // 使用迭代器遍历
+
+    console.log(iterator.next()) //第1次
+    console.log(iterator.next()) //第2次
+    console.log(iterator.next()) //第3次
+
+    var obj = {
+        *[Symbol.iterator]() {
+            yield 1;
+            yield 2;
+            yield 3;
+        }
+    }
+
+    for (const iterator of obj) {
+        console.log(iterator)
+    }
+
+    console.log([...obj])
+
+</script>

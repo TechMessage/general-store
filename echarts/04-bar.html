@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<!-- 
+    1. 贮备一个dom容器 ，固定 宽 高
+ -->
+
+<body>
+
+    <div class="box">
+
+    </div>
+
+</body>
+
+</html>
+<script src="./echarts.js"></script>
+<script>
+
+    //1. 初始化echarts
+
+    var myChart = echarts.init(document.querySelector('.box'))
+
+    // 2. 配置项option
+    var option = {
+        title: {
+            text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+
+        xAxis: {
+            type: 'category',
+            data: [1, 2, 3, 4]
+        },
+        yAxis: {
+            type: 'value',
+            min: 20,
+            max: 50,
+            splitNumber: 5,
+            axisLabel: {
+                formatter: function (value) {
+                    return value + '%'
+                }
+            }
+        },
+        series: [
+            {
+                barGap: '-100%',
+                name: '销量2',
+                type: 'bar',
+                data: [22.94, 24.5, 23.17, 29.4],
+                label: {
+                    show: true,
+                    formatter: function (params) {
+                        return Math.round(params.value / 100 * 449);
+                    },
+                    position: 'top',
+                    color: '#000'
+                },
+                itemStyle: {
+                    // show:false,
+                    // opacity:0,
+                }
+            },
+            {
+                name: '销量',
+                type: 'bar',
+                data: [22.94, 24.5, 23.17, 29.4],
+                label: {
+                    show: true,
+                    formatter: function (params) {
+                        return params.value + '%'
+                    }
+                }
+            },
+
+
+        ],
+        //数据集
+        dataset: {
+            //元数据
+            source: [
+                [1, 2, 3, 4]   //维度名
+                [22.94, 24.5, 23.17, 29.4], //占比
+                [103, 110, 104, 132]           //数值
+            ]
+        }
+    }
+
+    // 3. 设置配置项，生成图表
+    myChart.setOption(option)
+
+</script>

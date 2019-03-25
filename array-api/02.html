@@ -1,0 +1,39 @@
+<pre>
+
+    1. 在使用forEach方法遍历数组的时候，是不能打断整个循环的，也就是说break,continue都不可以使用
+    2. 唯一的终端循环的方式就是抛出异常
+    3. 不能使用continue, break 会报错，语法错误
+    4. 使用return 可以结束本次的循环
+    5. 结束整个循环，可以用throw
+
+
+</pre>
+
+<script>
+
+    var array = [1,2,3,4,5]
+
+    // array.forEach(function (v) {
+    //     if(v %2 == 0) {
+    //         // return
+    //         // continue;
+    //         // break; 
+    //     }
+    //     console.log(v)
+    // })
+
+    try {
+        array.forEach(v => {
+            if(v === 3) {
+                throw new Error('v==3')
+            }
+            console.log(v)
+        })
+    } catch (error) {
+        console.log(error)
+    }
+
+    console.log('end')
+
+
+</script>

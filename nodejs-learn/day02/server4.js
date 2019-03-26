@@ -32,7 +32,7 @@ http.createServer((req, res) => {
 
         } else {
             //监听广播
-            getmime(EventEmitter, path.extname(pathname))
+            getmime(EventEmitter, path.extname(pathname)) //同一个eventEmitter对象
             EventEmitter.on('to-mime', mime => {
                 res.writeHead(200, mime)
                 res.end(data)

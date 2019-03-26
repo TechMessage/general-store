@@ -80,7 +80,7 @@ const path = require('path')
 let readStream = fs.createReadStream('03fs.js')
 let writeStream = fs.createWriteStream('output.txt')
 
-readStream.pipe(writeStream); //读取流向写入流写入 
+readStream.pipe(writeStream);
 
 
 

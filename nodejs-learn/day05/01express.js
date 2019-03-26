@@ -21,4 +21,11 @@ app.get('/news/:id', function (req, res) {
     res.send('news'+req.params.id)
 })
 
+// get请求传值
+app.get('/product', function (req, res) {
+    //get请求的传值获取
+    console.log(req.query)
+    res.send('product' + req.query.id)
+})
+
 app.listen(3000)

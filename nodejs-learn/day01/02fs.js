@@ -68,11 +68,23 @@ const path = require('path')
 //     console.log('文件名修改成功')
 // })
 
-fs.rmdir('css', err => {
-    if(err) {
-        console.log(err)
-        return;
-    }
-    console.log('删除目录成功')
-})
+// fs.rmdir('css', err => {
+//     if(err) {
+//         console.log(err)
+//         return;
+//     }
+//     console.log('删除目录成功')
+// })
+
+// fs.unlink('2.txt', err => {
+//     if(err) {
+//         console.log(err)
+//         return
+//     }
+//     console.log('删除文件成功')
+// })
+
+
+
+
 

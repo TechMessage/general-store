@@ -16,7 +16,7 @@ http.createServer((req, res) => {
 
     //2
 
-    if (pathname !== '/favicon.ico') {
+    if (/*pathname !== '/favicon.ico' */ true) {
         
         fs.readFile(path.join(__dirname, 'static', pathname), (err, data) => {
             if(err) {
@@ -37,3 +37,5 @@ http.createServer((req, res) => {
 
 
 }).listen(8000)
+
+

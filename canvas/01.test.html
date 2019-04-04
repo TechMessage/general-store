@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas {
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="500" height="500">
+        您的浏览器不支持canvas
+    </canvas>
+    fadsfadsf
+</body>
+
+</html>
+
+<script>
+
+    var canvas = document.querySelector('canvas')
+
+    console.dir(canvas)
+
+    // 获取绘画的上下文
+    if (canvas.getContext) {
+        var ctx = canvas.getContext('2d', { alpha: true });
+        //绘制一个绿色的盒子
+        ctx.fillStyle = 'green'
+        ctx.fillRect(20, 20, 50, 50)
+
+        // 绘制一个红色的盒子
+        ctx.fillStyle = 'red'
+        ctx.fillRect(50, 50, 50, 50)
+
+        //strokeRect 方形的边框
+        ctx.strokeRect(200, 50, 50, 50)
+
+        //清空方形区域的,将该区域的图形清除，透明
+        ctx.clearRect(30, 30, 50, 50)
+
+        
+    }else {
+        console.log('浏览器不支持canvas')
+    }
+
+
+
+</script>

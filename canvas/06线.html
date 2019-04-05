@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="500" height="500">
+
+    </canvas>
+</body>
+</html>
+<!-- 
+
+    线的属性设置
+
+    lineWidth  线宽
+
+    lineCap  线的两个端点的形状，方形，圆头，
+        butt   一刀切
+        round  伸出半圆弧
+        square   伸出半个方形，高度为线宽的一半
+
+    lineJoin  设置折线 折点的形状 
+        round 圆弧过度  
+        bevel 削平
+        miter 尖头
+
+
+    lineDash 破折号
+
+    
+
+ -->
+<script>
+
+    var canvas = document.querySelector('canvas')
+    var ctx = canvas.getContext('2d')
+
+
+    //lineWidth 宽
+    ctx.lineWidth = 50;
+    ctx.beginPath()
+    ctx.moveTo(5, 0)
+    ctx.lineTo(5, 100);
+    ctx.stroke()
+
+
+
+    // lineCap
+    ctx.lineWidth = 50;
+    ctx.lineCap = 'round' // round square
+    ctx.beginPath()
+    ctx.moveTo(100, 50)
+    ctx.lineTo(100, 200);
+    ctx.stroke()
+    
+
+</script>

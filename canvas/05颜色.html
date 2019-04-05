@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas></canvas>
+</body>
+</html>
+<!-- 
+
+    设置颜色 
+    两个属性
+
+    fillStyle
+    strokeStyle
+
+    每次绘制不同颜色，都要重新设置属性值
+
+
+ -->
+
+ <script>
+     
+     var canvas = document.querySelector('canvas')
+
+     var ctx = canvas.getContext('2d')
+
+     // 
+
+    for(var i = 0; i< 6; i++ ) {
+        for(var j = 0;j<6;j++){
+            ctx.fillStyle = `rgb(${Math.floor(255-42*i)}, ${Math.floor(255-42*j)}, 0)`;
+            ctx.fillRect(j*25, i*25, 25, 25)
+        }
+    }
+ 
+ </script>

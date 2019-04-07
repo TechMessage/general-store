@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="600" height="300"></canvas>
+</body>
+
+</html>
+<script>
+
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+
+    var ball = {
+        x: 100,
+        y: 100,
+        vx: 5,
+        vy: 5,
+        radius: 30,
+        color: 'blue',
+        draw: function () {
+            ctx.beginPath()
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+    }
+
+
+    var raf;
+    var running = false;
+
+    function clear() {
+        // ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+    }
+
+    function draw() {
+
+        clear()
+
+        if (ball.y + ball.vy + ball.radius > canvas.height || ball.y + ball.vy - ball.radius < 0) {
+            ball.vy = -ball.vy;
+        }
+        if (ball.x + ball.vx + ball.radius > canvas.width || ball.x + ball.vx - ball.radius < 0) {
+            ball.vx = -ball.vx;
+        }
+
+        ball.draw()
+
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+
+
+
+
+        raf = window.requestAnimationFrame(draw)
+    }
+
+    // ball.draw()
+
+    canvas.addEventListener('click', function () {
+        raf = window.requestAnimationFrame(draw)
+        running = true;
+
+    })
+
+    canvas.addEventListener('mouseleave', function () {
+        window.cancelAnimationFrame(raf);
+        running = false;
+    })
+
+    canvas.addEventListener('mousemove', function (e) {
+        if (!running) {
+            
+            clear()
+
+            ball.x = e.clientX;
+            ball.y = e.clientY;
+            
+            ball.draw()
+        }
+    })
+
+    ball.draw()
+
+
+</script>

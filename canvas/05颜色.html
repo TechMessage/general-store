@@ -32,11 +32,18 @@
 
      // 
 
-    for(var i = 0; i< 6; i++ ) {
-        for(var j = 0;j<6;j++){
-            ctx.fillStyle = `rgb(${Math.floor(255-42*i)}, ${Math.floor(255-42*j)}, 0)`;
-            ctx.fillRect(j*25, i*25, 25, 25)
-        }
-    }
+    // for(var i = 0; i< 6; i++ ) {
+    //     for(var j = 0;j<6;j++){
+    //         ctx.fillStyle = `rgb(${Math.floor(255-42*i)}, ${Math.floor(255-42*j)}, 0)`;
+    //         ctx.fillRect(j*25, i*25, 25, 25)
+    //     }
+    // }
+    ctx.fillStyle = 'rgba(100, 121, 232, 0.4)'
+    ctx.fillRect(0,0,10,10)
+    
+    // imageData
+
+    var imageData = ctx.getImageData(0,0,10, 10)
+    console.log(imageData.data)
  
  </script>

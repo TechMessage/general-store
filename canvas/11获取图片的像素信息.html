@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            height: 150px;
+            width: 200px;
+            border: 1px solid #000;
+        }
+
+       
+
+        
+    </style>
+</head>
+<!-- 
+
+    canvas 可以根据外部的图片信息，绘制图片，从而可以获取到图片的所有像素的信息
+
+
+ -->
+<body>
+    
+    <canvas></canvas>
+
+    <div>
+    </div>
+    <img src="" alt="" class="srcimg">
+</body>
+</html>
+<script>
+
+    // Macintosh HD⁩ ▸ ⁨用户⁩ ▸ ⁨lihq⁩ ▸ ⁨桌面⁩
+
+    var img = new Image()
+    img.src = 'https://mdn.mozillademos.org/files/5397/rhino.jpg';
+
+
+    var canvas = document.querySelector('canvas')
+
+    var ctx = canvas.getContext('2d');
+
+    var dataURL;
+
+    img.onload = function() {
+        //加载图片到canvas
+        ctx.drawImage(img, 0 ,0);
+        
+        
+        dataURL = canvas.toDataURL();
+    }
+
+    // canvas.addEventListener('mousemove', function (e) {
+    //     //获取鼠标坐标点
+    //     var x = e.layerX;
+    //     var y = e.layerY;
+    //     console.log(x, y);
+    //     var imageData = ctx.getImageData(x, y, 1, 1) //获取一个像素的信息
+        
+    //     var dataArray = imageData.data;
+
+    //     // console.log(dataArray);
+
+    // })
+
+    // 保存当前的图片 dataURL 图片信息base64编码 默认是image/png
+
+
+    console.log(dataURL)
+
+
+    
+
+    document.querySelector('.scrimg').src = dataURL;
+
+
+
+</script>

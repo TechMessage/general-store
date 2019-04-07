@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <img src="https://mdn.mozillademos.org/files/4553/Capitan_Meadows,_Yosemite_National_Park.jpg" alt="">
+    <canvas width="800" height="200">
+
+    </canvas>
+</body>
+</html>
+<script>
+
+    // 创建图片dom 设置src
+    var img = new Image()
+    img.src = 'https://mdn.mozillademos.org/files/4553/Capitan_Meadows,_Yosemite_National_Park.jpg'
+
+
+    var canvasXsize = 800;
+    var canvasYsize = 200;
+    var speed = 50; 
+    var scale = 1.05; // 图片放大的比例
+    var y = -10;
+
+
+    var dx = 20;  // x方形 每次运动0.75
+    var imgW;  // 原图片的宽 放大之后
+    var imgH;  // 原图片的高 放大之后
+    var x = 100; // 决定 绘制图片的左上角的坐标值
+    var clearX;
+    var clearY;
+
+    var ctx;
+
+    // 图片浏览器加载完成后的事件
+    img.onload = function () {
+        imgW = img.width * scale;
+        imgH = img.height * scale;
+        
+        if(imgW > canvasXsize) {
+            x = canvasXsize - imgW; // 图片的宽度大于 canvas 画布的宽， 作画的时候，画的左侧定点在
+
+        }
+        
+        // if(imgW > canvasXsize) {
+        //     clearX = imgW;  // 清除画布是的 宽度
+        // }else {
+        //     clearX = canvasXsize;
+        // }
+
+        clearX = canvasXsize;
+
+        // if(imgH > canvasYsize) {
+        //     clearY = imgH;
+        // }else {
+        //     clearY = canvasYsize
+        // }
+        clearY = canvasYsize;
+        // clearY = Math.max(imgH, canvasYsize);
+
+        ctx = document.querySelector('canvas').getContext('2d')
+
+        // setInterval(draw, speed);
+
+        draw()
+
+    }
+
+    
+
+    function draw() {
+        ctx.clearRect(0,0, clearX, clearY); //清除canvas
+
+        // if(imgW <= canvasXsize) {
+        //     if(x > canvasXsize) {
+        //         x = -imgW + x;
+        //     }
+        //     if(x > 0) {
+        //         ctx.drawImage(img, -imgW+x, y,imgW, imgH)
+        //     }
+
+        //     if(x-imgW >0) {
+        //         ctx.drawImage(img, -imgW*2+x, y, imgW, imgH)
+        //     }
+        // }else {
+        //     if(x > canvasXsize) {
+        //         x = canvasXsize -imgW;
+        //     }
+        //     if(x > (canvasXsize -imgW)) {
+        //         ctx.drawImage(img, x-imgW+1, y, imgW, imgH)
+        //     }
+        // }
+
+        ctx.drawImage(img, 150, 100, imgW, imgH)
+
+        x+=dx;
+    }
+
+
+
+
+</script>

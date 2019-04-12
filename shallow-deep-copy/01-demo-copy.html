@@ -30,9 +30,27 @@
         4. Object.create() 方法
         5. jQuery提供的方法， jQuery.extend( [deep ], target, object1 [, objectN ] ) //deep: true
         
+        6. $.extend() //默认是不进行递归拷贝的，第一个参数设置为true时才会深拷贝
 
  -->
 <body>
     
 </body>
 </html>
+<script src="./jquery.js"></script>
+<script>
+
+    //深拷贝对象
+    var obj1 = {
+        name:'zhangs',
+        age:11,
+        cars:[
+            'bmw','mx', 'ff', 'dfa'
+        ]
+    }
+
+    var newobj = $.extend(true, {name:'lisi'}, obj1) //会将obj1中属性全部复制到目标对象中，
+    // 如果属性重名，就覆盖掉
+
+    console.log(newobj)
+</script>

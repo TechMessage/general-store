@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+        input::-webkit-input-placeholder {
+            color: aqua
+        }
+    </style>
+</head>
+<body>
+    <button class="confirm">
+        确认
+    </button>
+    <br>
+    <br>
+    <input type="text" placeholder="提示信息" value="" name="username">
+</body>
+</html>
+<script>
+
+    var btn = document.querySelector('.confirm')
+
+    var event = new CustomEvent('custom-click')
+    
+    btn.addEventListener('custom-click', function (e) {
+        console.log(e.target.innerHTML)
+    })
+
+    btn.dispatchEvent(event);
+
+</script>

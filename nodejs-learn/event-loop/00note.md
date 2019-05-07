@@ -54,6 +54,43 @@
 
 **check**
 
+> 这个阶段是允许立即执行回调函数，在poll阶段结束后。如果poll阶段是闲置的，待执行的脚本在setImmediate()中，那么会事件循环会进入到check阶段并执行脚本
+
+> setImmediate() 实际上是一个特殊的timer，它的执行是在一个事件循环中的单独的阶段，它是在poll阶段结束后执行
+
+> 一般来说，随着代码的执行，事件循环最后进入poll阶段，等待连接，请求，等等，如果说回调函数被setImmediate()包裹，同时poll阶段是闲置状态，那么会结束poll阶段，进入check阶段并执行
+
+**close callbacks**
+
+> 如果一个socket突然关闭了，那么close事件会在这个阶段触发，另外他会通过process.nextTick()来触发
 
 
+**setImmediate() vs setTimeout()**
+
+1. 两者相似，但是不同点在于执行的时机
+
+2. setImmediate() 它的设计是在结束当前poll阶段执行脚本
+3. setTimeout() 是经过设定的时间后执行
+
+4. setImmediate() 的优势在于当存在异步IO的时候，它的执行是比任何timer都要提前的。
+```     
+    const fs = require('fs')
+
+    fs.readFile(__filename, () => {
+
+        setTimeout(() => {
+            console.log(1)
+        }, 0);
+
+        setImmediate(()=>{
+            console.log(2)
+        })
+
+    })
+
+    // $ node 02.js
+    // 2
+    // 1
+    
+```
 

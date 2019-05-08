@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .container {
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #dda520;
+        }
+
+        .box2 {
+            width: 50px;
+            height: 80px;
+            align-self: flex-end;
+            background: #e92323;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+
+        flex 布局容器
+        
+        1. flexbox引起开发者的强烈兴趣的一大原因是：它解决了页面布局的一大
+           痛点——在垂直方向上的盒子的对齐方式的布局，通过flex你可以很简单的
+           让子盒子在父盒子中水平和垂直都居中
+        
+        2. 主轴方向和垂直轴方向分别给子盒子对其方式
+
+
+        3. 几个主要的css属性 flexbox 盒子的
+            
+            justify-content ：控制子盒子在主轴方向上的对齐方式
+            align-items:      .........非主轴....... 默认值：stretch
+        
+        
+        当一个容器使用display:flex的时候，它就是flexbox，它的所有子元素都是flex items
+
+        align-self: 该属性是针对每个子元素使用的，控制自己在父盒子中垂直轴方向的对齐方式，
+        取值和align-itmes 相同，align-items是给父盒子使用的属性，控制子盒子的对齐方式。
+        align-self是给子盒子使用的，控制自己的对齐方式，会覆盖父盒子的设置
+
+
+        4. 在一个盒子使用flex布局的时候，可以修改主轴的方向，默认水平方向是主轴
+        通过属性 
+        flex-direction： 可以修改主轴方向，相应的垂直轴也会跟着改变
+
+
+        5. flex-content 该属性是控制当flexbox盒子中子元素有换行的情况时，在垂直轴的方向上
+        行与行之间的布局
+
+     -->
+
+
+    <div class="container">
+        <div class="box">
+
+        </div>
+        <div class="box2">
+
+        </div>
+    </div>
+</body>
+
+</html>

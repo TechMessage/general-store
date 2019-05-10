@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div.box {
+            height: 300px;
+            width: 300px;
+            background: #999;
+
+            line-height: 50px;
+            text-align: center;
+            position: relative;
+            transition: transform .3s;
+        }
+
+        div.box::after {
+            content: "";
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 0px;
+            width: 0px;
+            border: 150px solid transparent;
+            border-left-color: aqua;
+
+        }
+
+        div.box:hover {
+            transform: rotate(90deg);
+        }
+        
+        
+
+
+    </style>
+</head>
+<body>
+    <!-- 
+
+        利用盒子的边框来做一个三角形的图标
+
+        原理：
+            1.利用伪元素来做一些装饰性的图标，上下三角形
+
+            2.盒子的四个边框，如果边框足够宽，那么其实每个边框都是一个梯形，一条边
+              是盒子的一个边
+            
+
+
+     -->
+
+    <div class="box">
+
+    </div>
+
+
+</body>
+</html>

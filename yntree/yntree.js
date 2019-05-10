@@ -5,7 +5,7 @@
 	var count = 0,
 		// checkbox计数器 针对的是页面上的所有
 		inputCount = 0,
-		// 存储页面上所有的YnTree对象，可能有多个实例存在
+		// 存储页面上所有的YnTree对象，可能有多个实例存在,将多个实例存储以id为key
 		ynTrees = {},
 		classNameCfg = {
 			// 节点展开的classname
@@ -72,26 +72,26 @@
 	}
 	YnTree.prototype.version = "1.0.0";
 	/**
-	 * 拷贝数据 外部数据，处理后 拷贝到内部对面data属性
-	 * @param  {array、object} data 数据
-	 * @return {object}      this
+	 * 拷贝数据 外部数据，处理后 拷贝到内部data属性
+	 * @param  {array、object} source 源数据数据
+	 * @return {object}      
 	 */
-	YnTree.prototype._copyData = function (data, parent) {
+	YnTree.prototype._copyData = function (source, target) {
 		var that = this;
-		data = data || that.options.data;
+		source = source || that.options.data;
 
-		YnTree.getType(data) != "array" ? (data = [data]) : "";
+		YnTree.getType(source) != "array" ? (source = [source]) : "";
 		// 遍历数组数据
-		YnTree.forEach(data, function (index, item) {
-			//当前节点不是叶子节点
+		YnTree.forEach(source, function (index, item) {
+			//当前节点不是叶子节点,有子节点
 			if (item.children) {
 				var obj = new CompositeLeaf(item, "composite", that.id);
-				parent.push(obj);
+				target.push(obj);
 				that.parallel.push(obj);
 				that._copyData(item.children, obj.children); //递归
 			} else {
 				var obj = new CompositeLeaf(item, "leaf", that.id);
-				parent.push(obj);
+				target.push(obj);
 				that.parallel.push(obj);
 			}
 		});

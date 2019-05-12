@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-size: 14px;
+			line-height: 1.42857143;
+		}
+
+		ul {
+			list-style: none;
+		}
+
+		.container {
+			/* width: 50%; */
+			margin: 0 auto;
+			padding-top: 50px;
+		}
+
+		.fl {
+			float: left;
+		}
+
+		.fr {
+			float: right;
+		}
+
+		.clearfix:before,
+		.clearfix:after {
+			display: table;
+			content: " ";
+			clear: both;
+		}
+
+		.tree {
+			margin-left: 20px;
+		}
+		/* #tree3{
+			height: 100px;
+		} */
+	</style>
+	<link rel="stylesheet" href="yntree.css" />
+</head>
+
+<body>
+
+	<div class="func">
+		<button id="select_del">选中删除用户</button>
+		<button id="cancle_select_del">取消选中删除用户</button>
+		<button id="get_selected_vals">获取选中的值</button>
+		<!-- <button id="create_tree">再建一颗树</button> -->
+		<button id="destroy_tree">销毁</button>
+		<button id="reInit_tree">重新初始化</button>
+	</div>
+
+	<div class="container clearfix">
+		<div id="tree" class=" fl tree"></div>
+		<div id="tree2" class=" fl tree"></div>
+		<div id="tree3" class="fl tree"></div>
+	</div>
+	<script src="jquery.js"></script>
+	<script type="text/javascript" src="yntree.js"></script>
+
+	<script type="text/javascript">
+		//获取后台数据
+		$.getJSON('./data.json', function (data) {
+			// console.log(data)
+
+			//处理数据 添加name, inputName, value
+			composite(data);
+
+			// 源数据
+			while (data.length > 1) {
+				data = processData2(data)
+				// data = processData2(data)
+			}
+
+
+			var treeData = {
+				// 复选框change事件
+				onchange: function (input, yntree) {
+					console.log(yntree.getValues(), yntree)
+				},
+				// 是否严格的遵循父子互相关联的做法
+				checkStrictly: true,
+				data: data
+			};
+
+
+
+			var yntree = new YnTree(document.getElementById("tree3"), treeData);
+			console.log(data);
+
+		})
+
+
+		function composite(data) {
+			for (var i = 0; i < data.length; i++) {
+				data[i].inputName = 'name';
+				data[i].value = data[i].name
+			}
+		}
+
+
+		function processData2(data) {
+
+			// while (data.length > 1) {
+			var cloneData = JSON.parse(JSON.stringify(data));
+
+			for (var i = 0; i < cloneData.length; i++) {
+				var childNode = cloneData[i]; //子节点
+
+				for (var j = 0; j < data.length; j++) {
+					// 找到父节点
+					var parentNode = data[j];
+
+					if (childNode.parentId == parentNode.id) {
+						//当前父节点有无children属性
+						if (!parentNode.children) {
+							parentNode.children = [];
+							parentNode.children.push(childNode)
+						} else {
+							//当前子节点是否存在
+							if (parentNode.children.length > 0) {
+								let childs = parentNode.children;
+								let flag = false; //标记子节点是否已经存在
+								for (let m = 0; m < childs.length; m++) {
+									if (childs[m].id == childNode.id) {
+										//当前子节点已经存在，合并
+										childs[m] = Object.assign({}, childs[m], childNode);
+										flag = true;
+										break;
+									}
+								};
+								if (!flag) {
+									parentNode.children.push(childNode)
+								}
+							} else {
+								parentNode.children.push(childNode)
+							}
+						}
+					}
+				};
+
+			};
+
+			for (var k = 0; k < cloneData.length; k++) {
+
+				// if (!data[k].children) {
+				// 	//没有子节点
+				// 	data[k] = undefined;
+				// } else {
+				// 	//条件有问题，children数组长度没变，是数组中的对象改变了
+				// 	if (cloneData[k].children && JSON.stringify(cloneData[k].children) == JSON.stringify(data[k].children)) {
+				// 		data[k] = undefined;
+				// 	}
+				// }
+
+				if (JSON.stringify(cloneData[k].children || {}) == JSON.stringify(data[k].children || {})) {
+					data[k] = undefined;
+				}
+
+			};
+
+			for (var p = 0; p < data.length; p++) {
+				if (data[p] == undefined) {
+					data.splice(p, 1);
+					p--
+				}
+			};
+
+			// console.log(data)
+			return data;
+
+		}
+
+
+
+
+
+
+
+
+		var treeData = {
+			// 复选框change事件
+			onchange: function (input, yntree) {
+				console.log(yntree.getValues(), yntree)
+			},
+			// 是否严格的遵循父子互相关联的做法
+			checkStrictly: true,
+			data: [
+				{
+					name: "系统管理", //页面展示的名称  --name
+					inputName: "system", //input框name值，传给后台的字段 --'name'
+					value: "系统管理",  //input 框 value值  --name
+					children: [   //子节点
+						{
+							// 树名称
+							name: "用户管理",
+							// 复选框的name属性值
+							inputName: "user",
+							// 复选框的值
+							value: "用户管理",
+							// 复选框的class
+							className: "",
+							// 默认是否选中
+							checked: false,  // --checked
+							// 是否禁用
+							disabled: false,
+							// 额外数据，如果数据是基本数据类型，则会以data-xx="yyy"的形式附加到复选框中
+							datas: {
+
+							},
+							children: [
+								{
+									name: "添加用户",
+									inputName: "user",
+									value: "添加用户",
+									checked: false,
+									disabled: false
+								},
+								{
+									name: "查看用户",
+									inputName: "user",
+									value: "查看用户"
+								},
+								{
+									name: "编辑用户",
+									inputName: "user",
+									value: "编辑用户",
+									disabled: false,
+									children: [
+										{
+											name: "删除用户",
+											inputName: "user",
+											value: "删除用户"
+										},
+										{
+											name: "修改用户",
+											inputName: "user",
+											value: "修改用户",
+											checked: false
+										}
+									]
+								}
+
+							]
+						},
+						{
+							name: "投诉管理",
+							inputName: "complaint",
+							value: "投诉管理",
+							checked: false,
+							children: [
+								{
+									name: "添加投诉",
+									inputName: "complaint",
+									value: "添加投诉"
+								},
+								{
+									name: "删除投诉",
+									inputName: "complaint",
+									value: "删除投诉"
+								},
+								{
+									name: "编辑投诉",
+									inputName: "complaint",
+									value: "编辑投诉"
+								},
+								{
+									name: "查看投诉",
+									inputName: "complaint",
+									value: "查看投诉"
+								}
+							]
+						}
+					]
+				},
+				{
+					name: "我的公司",
+					inputName: "company",
+					value: "我的公司",
+					children: [
+						{
+							name: "公司管理",
+							inputName: "company manage",
+							value: "公司管理"
+						},
+						{
+							name: "部门管理",
+							inputName: "department manage",
+							value: "部门管理"
+						}
+					]
+				}
+			]
+		};
+
+
+
+		// var yntree = new YnTree(document.getElementById("tree"), treeData);
+		//var yntree = new YnTree(document.getElementById("tree"), {data: []});
+		// console.log(treeData);
+		//new YnTree(document.getElementById("tree2"), treeData);
+		//yntree.data[0].children[1].children[2].select(true);
+		//yntree.data[0].children[1].select(true);
+		//yntree.data[0].select(true);
+		//yntree.data[0].children[1].children[2].selectUp(true);
+		//console.log(yntree.data[0].children[0].children[1].disable(true));
+
+		// yntree.data[0].spread(true);
+		// yntree.data[0].children[1].spread(true);
+		// yntree.data[0].children[1].children[2].spread(true);
+
+		// yntree.disable("查看用户", true);
+		// yntree.disable("添加用户", false);
+		document.getElementById("select_del").onclick = function () {
+			yntree.select("删除用户", true);
+		}
+		document.getElementById("cancle_select_del").onclick = function () {
+			yntree.select("删除用户", false);
+		}
+		document.getElementById("get_selected_vals").onclick = function () {
+			alert(yntree.getValues());
+		}
+		// document.getElementById("create_tree").onclick = function () {
+		// 	new YnTree(document.getElementById("tree2"), treeData);
+		// }
+		document.getElementById("destroy_tree").onclick = function () {
+			yntree.destroy();
+			console.log(yntree);
+		}
+		document.getElementById("reInit_tree").onclick = function () {
+			yntree.reInit(treeData.data);
+			console.log(yntree);
+		}
+
+	</script>
+</body>
+
+</html>

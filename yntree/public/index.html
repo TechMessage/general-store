@@ -79,7 +79,7 @@
 
 			// 源数据
 			while (data.length > 1) {
-				data = processData2(data)
+				data = processData(data)
 				// data = processData2(data)
 			}
 
@@ -110,7 +110,7 @@
 		}
 
 
-		function processData2(data) {
+		function processData(data) {
 
 			// while (data.length > 1) {
 			var cloneData = JSON.parse(JSON.stringify(data));
@@ -153,16 +153,6 @@
 			};
 
 			for (var k = 0; k < cloneData.length; k++) {
-
-				// if (!data[k].children) {
-				// 	//没有子节点
-				// 	data[k] = undefined;
-				// } else {
-				// 	//条件有问题，children数组长度没变，是数组中的对象改变了
-				// 	if (cloneData[k].children && JSON.stringify(cloneData[k].children) == JSON.stringify(data[k].children)) {
-				// 		data[k] = undefined;
-				// 	}
-				// }
 
 				if (JSON.stringify(cloneData[k].children || {}) == JSON.stringify(data[k].children || {})) {
 					data[k] = undefined;

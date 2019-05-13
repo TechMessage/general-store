@@ -73,7 +73,7 @@
 
 			// 组装dom元素
 			this._assemblyDom(this.tree, this.data);
-		}UFVYHJ
+		}
 
 		this.ele.appendChild(this.tree);
 		// console.log(this);

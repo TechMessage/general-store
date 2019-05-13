@@ -144,7 +144,7 @@
 			html += '			<input type="checkbox" class="yn-tree-input ' + className + '" id="' + id + '" ' + (checked ? 'checked="checked"' : '') + (disabled ? 'disabled="disabled"' : '') + (parent && parent.id ? (' pid="' + parent.id + '"') : "") + ' name="' + nameVal + '" value="' + val + '">' + item.name;
 			// 是实际的页面url链接添加操作域 <!--todo-->
 			if(item.href){
-				html +='&nbsp;<a class="operation" href="javascript:alert(0);">操作</a>';
+				html +='&nbsp;<a id="a_id_' + (inputCount) + '" class="operation" href="javascript:alert(0);">操作</a>';
 			}
 
 			html += '		</label>';

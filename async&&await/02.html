@@ -1,0 +1,27 @@
+<script>
+
+    // 异步的操作
+    function name(params) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                //成功
+                resolve('111')
+            }, 2000)
+        })
+    }
+
+
+    async function getResult() {
+        //封装异步的操作
+        try {
+            let data = await name();
+            console.log(data)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // 执行
+    getResult()
+
+</script>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+
+    map 这种数据结构，描述的是一种key-value的数据结构，就是一种映射关系
+
+    1. 可以把它看作是一种容器，存储key-value这种类型的数据
+    2. Map 存储数据是有序的，这一点和同为key-value结构的对象类型是不同的，Map内的数据顺序是根据其插入的顺序一致的
+
+    3. key 的 相等性判断 是根据=== （全等来判断的）， NaN和NaN视为一致，相等的key 值 添加，value值会被覆盖掉
+
+    4. map容器的当前数据量，有size属性
+
+
+
+    map 和 object的 异同比较
+
+    1. object 和 map都是存储key-value这种数据结构的容器，都可以存取，删，查，
+
+    2. object的key仅仅支持 字符型和symbol型， map的key是任意类型都可以，包括对象，函数和基本类型
+
+    3. map中key是有序的，object的key是无序的
+
+    4. map自带size属性，记录当前容器数据的量
+
+    5. map是直接可迭代的，而object首先要获取到keys
+
+    6. object默认是有原型的，所以会存在属性覆盖的风险， 当然了你可以创建 object.create(null)来创建一个无原型的对象
+
+    7. map在某些场景下性能会更好 （ 经常性的需要 增加，删除 属性操作， 推测内部是链表结构 ）
+
+
+    // map的实例对象
+
+    1. 原型方法 
+
+    set(key, value) // 增
+    get(key)        // 获取
+    forEach()       // 遍历 ，外迭代
+    entries()       // 
+    delete(key)     // 删
+    clear()         // 清空
+    keys()
+    values()
+
+
+    // Set 数据结构，存储唯一值得容器 
+    1. 既然是唯一性，就要判断相等性，策略是 === 全等判断
+    2. 特殊情况， NaN 视为相等
+    3. -0 和 +0 视为相等
+
+
+    // weakmap, weakset 都是紧紧支持对象类型的key
+
+    
+
+    
+
+
+ -->
+
+<body>
+    <script>
+        /*
+            1. Map本身是构造函数，需要实例化对象来使用
+            2. 接受的参数是 数组（2维），或是可迭代的对象
+
+
+        */
+
+        const map1 = new Map();
+
+        // m1.size  容器的大小
+
+        // 设置kye
+
+        const key1 = 'hello',
+            key2 = {},
+            key3 = () => {};
+
+
+        map1.set(key1, 'string key');
+        map1.set(key2, 'object key');
+        map1.set(key3, 'function key');
+
+        // size     
+        map1.size
+
+        // get 值
+
+        // map的遍历
+
+        for (const [key, value] of map1) {
+            console.log({ key, value })
+        }
+
+        // 
+        for (const key of map1.keys()) {
+            console.log({ key })
+        }
+        // forEach 遍历
+
+        map1.forEach(function(value, key) {
+
+        });
+
+
+        // 
+
+        const set1 = new Set();
+
+        set1.add('12341');
+
+
+        // set的典型应用，数组去重
+
+        let array = [1, 2, 3, 4, 4];
+
+        console.log([...new Set(array)]);
+
+        
+    </script>
+</body>
+
+</html>
